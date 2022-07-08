@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     cursor: "pointer",
     display: "flex",
     alignItems: "center",
-    fontSize: "18px",
+    fontSize: "17px",
 
     "&:hover": {
       backgroundColor: "#e8e5e5 !important",
@@ -113,7 +113,7 @@ export const SideFilterPanel = () => {
         >
           <LibraryBooksRoundedIcon />
           <Typography variant="inherit" noWrap ml={1}>
-            Suggestions
+            Recommondations
           </Typography>
         </Box>
         <Filters />

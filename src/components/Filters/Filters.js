@@ -21,12 +21,14 @@ const useStyles = makeStyles((theme) => ({
   radioLabel: {
     display: "flex",
     alignItems: "center",
+    marginRight: "-16px",
   },
 
   radioColor: {
     "&.Mui-checked": {
       color: "#832BE0 !important",
     },
+    paddingRight: "4px !important",
   },
 
   inpuText: {
@@ -84,7 +86,7 @@ export const Filters = () => {
           Ratings
         </Typography>
 
-        <Box sx={{ fontSize: "10px" }}>
+        <Box sx={{ fontSize: "10px", padding: 0 }}>
           <FormControl>
             <RadioGroup
               aria-labelledby="demo-controlled-radio-buttons-group"
@@ -98,7 +100,7 @@ export const Filters = () => {
                 label={
                   <div className={classes.radioLabel}>
                     <Rating
-                      sx={{ mr: 0.7, fontSize: "19px" }}
+                      sx={{ mr: 0.5, fontSize: "19px" }}
                       name="read-only"
                       value={4}
                       readOnly
@@ -114,7 +116,7 @@ export const Filters = () => {
                 label={
                   <div className={classes.radioLabel}>
                     <Rating
-                      sx={{ mr: 0.7, fontSize: "19px" }}
+                      sx={{ mr: 0.5, fontSize: "19px" }}
                       name="read-only"
                       value={3}
                       readOnly
@@ -130,7 +132,7 @@ export const Filters = () => {
                 label={
                   <div className={classes.radioLabel}>
                     <Rating
-                      sx={{ mr: 0.7, fontSize: "19px" }}
+                      sx={{ mr: 0.5, fontSize: "19px" }}
                       name="read-only"
                       value={2}
                       readOnly
@@ -146,7 +148,7 @@ export const Filters = () => {
                 label={
                   <div className={classes.radioLabel}>
                     <Rating
-                      sx={{ mr: 0.7, fontSize: "19px" }}
+                      sx={{ mr: 0.5, fontSize: "19px" }}
                       name="read-only"
                       value={1}
                       readOnly

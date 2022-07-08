@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Container } from "@mui/material";
 import { baseUrl } from "../baseUrl";
 import { AlertBox } from "../components/Common/AlertBox";
+import { ScrollToTop } from "../components/Common/ScrollToTop";
 
 export const BookData = () => {
   const { id } = useParams();
@@ -39,9 +40,12 @@ export const BookData = () => {
       {!responseError && bookError ? (
         <AlertBox message="Book not Found" />
       ) : (
-        <Container maxWidth="xl">
-          {book && <BookDetails book={book} />}
-        </Container>
+        <>
+          <Container maxWidth="xl">
+            {book && <BookDetails book={book} />}
+          </Container>
+          <ScrollToTop />
+        </>
       )}
     </>
   );

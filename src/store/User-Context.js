@@ -27,6 +27,10 @@ const UserContext = createContext({
     getNewValue: true,
   },
   setTotalPageCount: (value, flag) => {},
+  recomCurrentPage: 1,
+  setRecomCurrentPage: (value) => {},
+  recomTotalCount: 1,
+  setRecomTotalCount: (value) => {},
 });
 
 export const UserContextProvider = (props) => {
@@ -49,6 +53,8 @@ export const UserContextProvider = (props) => {
     value: 1,
     getNewValue: true,
   });
+  const [recomCurrentPageStored, setRecomCurrentPageStored] = useState(1);
+  const [recomTotalCountStored, setRecomTotalCountStored] = useState(1);
 
   const userIsLoggedHandler = (user) => {
     setUserDataStored(user);
@@ -90,6 +96,14 @@ export const UserContextProvider = (props) => {
     setTotalPageCountStored(totalCount);
   };
 
+  const recomCurrentPageHandler = (page) => {
+    setRecomCurrentPageStored(page);
+  };
+
+  const recomTotalCountHandler = (count) => {
+    setRecomTotalCountStored(count);
+  };
+
   const context = useMemo(
     () => ({
       userData: userDataStored,
@@ -110,6 +124,10 @@ export const UserContextProvider = (props) => {
       setCurrentPage: currentPageHandler,
       totalPageCount: totalPageCountStored,
       setTotalPageCount: totalPageCountHandler,
+      recomCurrentPage: recomCurrentPageStored,
+      setRecomCurrentPage: recomCurrentPageHandler,
+      recomTotalCount: recomTotalCountStored,
+      setRecomTotalCount: recomTotalCountHandler,
     }),
     [
       userDataStored,
@@ -121,6 +139,8 @@ export const UserContextProvider = (props) => {
       keywordStored,
       currentPageStored,
       totalPageCountStored,
+      recomCurrentPageStored,
+      recomTotalCountStored,
     ]
   );
 

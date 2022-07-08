@@ -24,18 +24,18 @@ export const Team = () => {
           variant="h4"
           align="center"
           sx={{
-            fontSize: "28px",
+            fontSize: { xs: "16.8px", md: "24px" },
             textAlign: "justify",
             textJustify: "inner-word",
           }}
           paragraph
         >
-          Hello there! This app was made by our team (Shubham Bhagat, Ameya
-          Dalvi, Shefali Luley) and our goal is to provide users with the best
-          book recommendations. Being avid readers ourselves, we hope this
-          platform helps every reader out there to expand their reading horizon.
-          It does not matter if you are a beginner or an experienced reader, we
-          are there to have your back.
+          Hello there! This app was made by our team - Shubham Bhagat, Ameya
+          Dalvi, Shefali Luley and Sushant Kotwal, and our goal is to provide
+          users with the best book recommendations. Being avid readers
+          ourselves, we hope this platform helps every reader out there to
+          expand their reading horizon. It does not matter if you are a beginner
+          or an experienced reader, we are there to have your back.
         </Typography>
       </Container>
     </div>

@@ -60,7 +60,12 @@ export const SignUp = () => {
 
   return (
     <div>
-      <Grid container>
+      <Grid
+        container
+        sx={{
+          marginTop: { xs: "35px", sm: "40px", md: "66px" },
+        }}
+      >
         <Grid
           item
           key="login-image"

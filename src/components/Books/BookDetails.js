@@ -24,12 +24,21 @@ const useStyles = makeStyles((theme) => ({
   card: {
     cursor: "pointer",
     width: "50%",
+    [theme.breakpoints.down("lg")]: {
+      width: "70%",
+    },
     [theme.breakpoints.down("md")]: {
       width: "80%",
     },
+    [theme.breakpoints.down("sm")]: {
+      width: "70%",
+    },
     "&.MuiCard-root": {
       background: "none !important",
-      padding: "2px",
+
+      [theme.breakpoints.down("sm")]: {
+        padding: "2px",
+      },
     },
   },
   cardMedia: {
@@ -44,12 +53,24 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "row",
   },
 
-  bookText: {
-    [theme.breakpoints.up("sm")]: {
+  bookTextBox: {
+    [theme.breakpoints.up("md")]: {
       paddingRight: "4.5%",
     },
-    [theme.breakpoints.down("xs")]: {
-      paddingTop: "10%",
+    [theme.breakpoints.down("sm")]: {
+      paddingTop: "7%",
+    },
+  },
+
+  bookText: {
+    [theme.breakpoints.up("xs")]: {
+      fontSize: "22px !important",
+    },
+    [theme.breakpoints.up("sm")]: {
+      fontSize: "20px !important",
+    },
+    [theme.breakpoints.up("md")]: {
+      fontSize: "24px !important",
     },
   },
 
@@ -57,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "28px !important",
     paddingLeft: "30px !important",
     paddingRight: "30px !important",
-    fontSize: "18px !important",
+
     backgroundColor: "#D843DB !important",
   },
 }));
@@ -124,15 +145,22 @@ export const BookDetails = (props) => {
 
   return (
     <>
-      <Grid container pt={{ sm: 10, xs: 5 }}>
+      <Grid
+        container
+        pt={{ sm: 10, xs: 5 }}
+        sx={{
+          marginTop: "60px",
+        }}
+      >
         <Grid
           item
           xs={12}
-          sm={5}
+          sm={4.5}
+          md={5}
           sx={{
             display: "flex",
             justifyContent: "center",
-            alignItems: "center",
+            // alignItems: "center",
           }}
         >
           <Card className={classes.card} elevation={0}>
@@ -143,24 +171,42 @@ export const BookDetails = (props) => {
             />
           </Card>
         </Grid>
-        <Grid item xs={12} sm={7} className={classes.bookText}>
-          <Typography variant="h4">{book.book_title}</Typography>
+        <Grid item xs={12} sm={7.5} md={7} className={classes.bookTextBox}>
+          <Typography
+            variant="h4"
+            sx={{ fontSize: { sm: "28px", md: "34px" } }}
+          >
+            {book.book_title}
+          </Typography>
           <Rating
             precision={0.5}
             value={book.book_rating}
-            sx={{ p: 0.9, pl: 0 }}
+            sx={{ p: 0.9, pl: 0, fontSize: { sm: "18px", md: "1.5rem" } }}
             readOnly
           />
-          <Box className={classes.textBox} sx={{ pt: 2 }}>
-            <Typography variant="h5" fontWeight="bold">
+          <Box className={classes.textBox} sx={{ pt: { xs: 2, sm: 1, md: 2 } }}>
+            <Typography
+              variant="h5"
+              fontWeight="bold"
+              className={classes.bookText}
+            >
               Author:
             </Typography>
-            <Typography variant="h5" sx={{ pl: 3.7 }}>
+            <Typography
+              variant="h5"
+              sx={{ pl: 3.7 }}
+              className={classes.bookText}
+            >
               {book.book_author}
             </Typography>
           </Box>
           <Box className={classes.textBox} sx={{ pt: 2 }}>
-            <Typography variant="h5" fontWeight="bold" sx={{ mt: 1 }}>
+            <Typography
+              variant="h5"
+              fontWeight="bold"
+              sx={{ mt: 0.2 }}
+              className={classes.bookText}
+            >
               Genres:
             </Typography>
             <Box sx={{ pl: 2 }}>
@@ -172,8 +218,9 @@ export const BookDetails = (props) => {
                     sx={{
                       mt: 0.7,
                       ml: 1,
-                      fontSize: "inherit",
+                      fontSize: { xs: "16px", sm: "13px", md: "16px" },
                     }}
+                    className={classes.genreChip}
                   />
                 );
               })}
@@ -184,11 +231,16 @@ export const BookDetails = (props) => {
             sx={{
               pt: 3,
               display: "flex",
-              flexDirection: "column",
+              // flexDirection: "column",
               alignItems: "center",
             }}
           >
-            <Typography variant="h5" fontWeight="bold" sx={{ mt: 1 }}>
+            <Typography
+              variant="h5"
+              fontWeight="bold"
+              sx={{ mt: { md: 1 } }}
+              className={classes.bookText}
+            >
               Like <br />
               Percent:
             </Typography>
@@ -196,11 +248,14 @@ export const BookDetails = (props) => {
               <Progress done={book.book_like_percent} />
             </Box>
           </Box>
-          <Box sx={{ mt: 6 }}>
+          <Box sx={{ mt: { xs: 5, md: 4, lg: 6 } }}>
             <Button
               variant="contained"
               className={classes.addBookButton}
               onClick={addToBooklistHandler}
+              sx={{
+                fontSize: { xs: "18px", sm: "14px", md: "16px", lg: "18px" },
+              }}
             >
               Add to BookList
             </Button>
@@ -222,7 +277,10 @@ export const BookDetails = (props) => {
         >
           Description
         </Typography>
-        <Typography fontWeight="normal" sx={{ mt: 3, fontSize: "20px" }}>
+        <Typography
+          fontWeight="normal"
+          sx={{ mt: 3, fontSize: { sm: "16.8px", md: "18px", lg: "20px" } }}
+        >
           {book.book_description}
         </Typography>
       </Box>

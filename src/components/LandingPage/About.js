@@ -31,7 +31,7 @@ export const About = () => {
           align="center"
           sx={{
             color: "#fff",
-            fontSize: "28px",
+            fontSize: { xs: "16.8px", md: "24px" },
             textAlign: "justify",
             textJustify: "inner-word",
           }}

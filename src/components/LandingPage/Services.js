@@ -25,12 +25,11 @@ const useStyles = makeStyles((theme) => ({
   },
 
   cardMedia: {
-    [theme.breakpoints.up("md")]: {
-      paddingLeft: "20%",
-      paddingRight: "20%",
-    },
+    paddingLeft: "20%",
+    paddingRight: "20%",
+
     [theme.breakpoints.down("sm")]: {
-      paddingLeft: "30%",
+      paddingLeft: "30% ",
       paddingRight: "30%",
     },
   },
@@ -68,6 +67,7 @@ export const Services = () => {
                     component="img"
                     image="/assets/servicelogo.png"
                     title="service image"
+                    // sx={{ p: { sm: 5 } }}
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" align="center">

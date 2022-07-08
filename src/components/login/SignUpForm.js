@@ -7,6 +7,8 @@ import {
   InputAdornment,
   Typography,
   Alert,
+  Autocomplete,
+  Popper,
 } from "@mui/material";
 import { Button, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -14,6 +16,7 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useEffect, useState, useRef } from "react";
 import { makeStyles } from "@mui/styles";
+import { genres } from "./genres";
 
 const useStyles = makeStyles((theme) => ({
   inpuText: {
@@ -44,6 +47,34 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#832BE0 !important",
   },
 }));
+
+const CustomerPopper = (props) => {
+  const modifiers = [
+    {
+      name: "flip",
+      options: {
+        fallbackPlacements: [],
+      },
+    },
+    // {
+    //   name: "preventOverflow",
+    //   options: {
+    //     altAxis: true,
+    //     padding: 40,
+    //   },
+    // },
+  ];
+
+  return (
+    <Popper
+      {...props}
+      modifiers={modifiers}
+      popperOptions={{
+        placement: "bottom",
+      }}
+    />
+  );
+};
 
 export const SignUpForm = (props) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -139,15 +170,15 @@ export const SignUpForm = (props) => {
       setPasswordError(true);
     }
 
-    if (genre1 === "") {
+    if (genre1 === "" || genre1 === null) {
       errorFlag = true;
       setGenre1Error(true);
     }
-    if (genre2 === "") {
+    if (genre2 === "" || genre2 === null) {
       errorFlag = true;
       setGenre2Error(true);
     }
-    if (genre3 === "") {
+    if (genre3 === "" || genre3 === null) {
       errorFlag = true;
       setGenre3Error(true);
     }
@@ -315,56 +346,76 @@ export const SignUpForm = (props) => {
           </Stack>
           <Stack spacing={2} mt={2}>
             <Stack direction="row" spacing={2} alignItems="flex-start">
-              <TextField
-                className={genre1Error ? classes.errorText : classes.inpuText}
-                required
-                id="outlined-required4"
-                label="Genre 1"
+              <Autocomplete
+                disablePortal
+                id="combo-box-demo"
                 fullWidth
-                variant="filled"
-                inputProps={{
-                  autoComplete: "new-password",
-                  form: {
-                    autoComplete: "off",
-                  },
-                }}
-                error={genre1Error}
-                helperText={genre1Error && "Incorrect Entry."}
-                inputRef={genre1Ref}
+                PopperComponent={CustomerPopper}
+                options={genres}
+                ListboxProps={{ style: { maxHeight: "13rem" } }}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    className={
+                      genre1Error ? classes.errorText : classes.inpuText
+                    }
+                    fullWidth
+                    variant="filled"
+                    required
+                    label="Genre 1"
+                    error={genre1Error}
+                    helperText={genre1Error && "Incorrect Entry."}
+                    inputRef={genre1Ref}
+                  />
+                )}
               />
-              <TextField
-                className={genre2Error ? classes.errorText : classes.inpuText}
-                required
-                id="outlined-required5"
-                label="Genre 2"
+
+              <Autocomplete
+                disablePortal
+                id="combo-box-demo2"
                 fullWidth
-                variant="filled"
-                inputProps={{
-                  autoComplete: "new-password",
-                  form: {
-                    autoComplete: "off",
-                  },
-                }}
-                error={genre2Error}
-                helperText={genre2Error && "Incorrect Entry."}
-                inputRef={genre2Ref}
+                PopperComponent={CustomerPopper}
+                options={genres}
+                ListboxProps={{ style: { maxHeight: "13rem" } }}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    className={
+                      genre2Error ? classes.errorText : classes.inpuText
+                    }
+                    fullWidth
+                    variant="filled"
+                    required
+                    label="Genre 2"
+                    error={genre2Error}
+                    helperText={genre2Error && "Incorrect Entry."}
+                    inputRef={genre2Ref}
+                  />
+                )}
               />
-              <TextField
-                className={genre3Error ? classes.errorText : classes.inpuText}
-                required
-                id="outlined-required6"
-                label="Genre 3"
+
+              <Autocomplete
+                disablePortal
+                id="combo-box-demo3"
                 fullWidth
-                variant="filled"
-                inputProps={{
-                  autoComplete: "new-password",
-                  form: {
-                    autoComplete: "off",
-                  },
-                }}
-                error={genre3Error}
-                helperText={genre3Error && "Incorrect Entry."}
-                inputRef={genre3Ref}
+                PopperComponent={CustomerPopper}
+                options={genres}
+                ListboxProps={{ style: { maxHeight: "13rem" } }}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    className={
+                      genre3Error ? classes.errorText : classes.inpuText
+                    }
+                    fullWidth
+                    variant="filled"
+                    required
+                    label="Genre 3"
+                    error={genre3Error}
+                    helperText={genre3Error && "Incorrect Entry."}
+                    inputRef={genre3Ref}
+                  />
+                )}
               />
             </Stack>
           </Stack>

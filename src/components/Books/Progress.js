@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "20px",
     height: "22px",
     width: "60%",
-    [theme.breakpoints.down("md")]: {
+    [theme.breakpoints.down("lg")]: {
       width: "90%",
     },
   },

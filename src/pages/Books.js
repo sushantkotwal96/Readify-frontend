@@ -66,6 +66,10 @@ export const Books = () => {
     }
   };
 
+  const currentPageHandler = (value) => {
+    userCtx.setCurrentPage(value);
+  };
+
   const scrollToTopHandler = () => {
     window.scrollTo({
       top: 0,
@@ -80,7 +84,7 @@ export const Books = () => {
           container
           spacing={2}
           sx={{
-            marginTop: { xs: "30px", sm: "40px", md: "50px" },
+            marginTop: { xs: "35px", sm: "40px", md: "50px" },
           }}
         >
           <Grid
@@ -161,7 +165,11 @@ export const Books = () => {
                   flexDirection: "column",
                 }}
               >
-                <PaginationTab totalPageCount={userCtx.totalPageCount.value} />
+                <PaginationTab
+                  totalPageCount={userCtx.totalPageCount.value}
+                  currentPageHandler={currentPageHandler}
+                  currentPage={userCtx.currentPage}
+                />
               </Box>
             </Container>
           </Grid>

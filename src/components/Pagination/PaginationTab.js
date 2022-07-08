@@ -1,6 +1,4 @@
 import { Pagination } from "@mui/material";
-import { useContext } from "react";
-import UserContext from "../../store/User-Context";
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -29,19 +27,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const PaginationTab = ({ totalPageCount }) => {
-  const userCtx = useContext(UserContext);
+export const PaginationTab = ({
+  totalPageCount,
+  currentPageHandler,
+  currentPage,
+}) => {
   const classes = useStyles();
 
   const handlePageChange = (event, value) => {
-    userCtx.setCurrentPage(value);
+    currentPageHandler(value);
   };
 
   return (
     <Pagination
       count={totalPageCount}
       defaultPage={1}
-      page={userCtx.currentPage}
+      page={currentPage}
       size="large"
       onChange={handlePageChange}
       siblingCount={0}

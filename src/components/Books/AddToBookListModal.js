@@ -135,6 +135,9 @@ export const AddToBookListModal = (props) => {
 
         if (response.status === 200) {
           props.responseHandler();
+          sessionStorage.getItem("recommendations") &&
+            sessionStorage.removeItem("recommendations");
+          userCtx.setRecomTotalCount(1);
           handleClose();
         } else if (response.status === 401) {
           setResponseError(true);
@@ -180,6 +183,9 @@ export const AddToBookListModal = (props) => {
 
         if (response.status === 200) {
           props.responseHandler();
+          sessionStorage.getItem("recommendations") &&
+            sessionStorage.removeItem("recommendations");
+          userCtx.setRecomTotalCount(1);
           handleClose();
         } else if (response.status === 403) {
           props.booklistAlertHandler();

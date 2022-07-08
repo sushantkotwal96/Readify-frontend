@@ -56,6 +56,7 @@ export const MainNavigation = () => {
   const logoutHandler = () => {
     localStorage.removeItem("readifyUser");
     localStorage.removeItem("token");
+    sessionStorage.removeItem("recommendations");
     userCtx.setUserData();
     resetFilters();
     navigate("/", { replace: true });
@@ -85,6 +86,7 @@ export const MainNavigation = () => {
   const navigateToAccount = (link) => {
     handleCloseNavMenu();
     navigate(link);
+    userCtx.setRecomCurrentPage(1);
   };
 
   const resetFilters = () => {
@@ -96,6 +98,7 @@ export const MainNavigation = () => {
     userCtx.setSortOrder("default");
     userCtx.setCurrentPage(1);
     userCtx.setTotalPageCount(userCtx.totalPageCount.value, true);
+    userCtx.setRecomCurrentPage(1);
   };
 
   const scrollToTarget = (id) => {
@@ -131,26 +134,33 @@ export const MainNavigation = () => {
             <Box
               sx={{
                 flex: 1,
-                cursor: "pointer",
+                // cursor: "pointer",
                 mr: 2,
                 ml: 4,
                 display: { xs: "none", md: "flex" },
                 alignItems: "center",
               }}
-              onClick={() => navigateTo("/")}
             >
               <Avatar sx={{ mr: 2 }} alt="A" src="/assets/navbrand.png" />
               <Typography
+                onClick={() => navigateTo("/")}
                 variant="h6"
                 noWrap
                 component="div"
                 textAlign="center"
+                sx={{ cursor: "pointer" }}
               >
                 READIFY
               </Typography>
             </Box>
 
-            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            <Box
+              sx={{
+                // flexGrow: 1,
+                display: { xs: "flex", md: "none" },
+                // border: "2px solid white",
+              }}
+            >
               <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -211,6 +221,10 @@ export const MainNavigation = () => {
                 flexGrow: 1,
                 cursor: "pointer",
                 display: { xs: "flex", md: "none" },
+                // border: "2px solid white",
+                justifyContent: "center",
+                // pr: { xs: 1, sm: 0 },
+                pl: { xs: 6 },
               }}
               onClick={() => navigate("/")}
             >
