@@ -6,7 +6,8 @@ import { useContext, useState } from "react";
 const useStyles = makeStyles((theme) => ({
   inpuText: {
     "& .MuiInput-underline:after": {
-      borderBottomColor: "#832BE0",
+      borderBottom: "1.5px solid #832BE0!important",
+      // borderBottomColor: "#832BE0 !important",
     },
   },
 }));

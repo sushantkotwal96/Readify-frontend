@@ -872,7 +872,6 @@ export const genres = [
   "Spiritualism",
   "Global Warming",
   "Fantasy Of Manners",
-  "漫画",
   "Ivory Coast",
   "Western Africa",
   "Republic Of The Congo",

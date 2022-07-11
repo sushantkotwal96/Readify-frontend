@@ -49,7 +49,7 @@ export const Recommondations = () => {
             "recommendations",
             JSON.stringify(data.recommendations)
           );
-          console.log(data.total_length);
+          // console.log(data.total_length);
           userCtx.setRecomTotalCount(Math.ceil(data.total_length / 24));
         }
       } catch (error) {
