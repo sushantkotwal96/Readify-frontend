@@ -21,6 +21,13 @@ export const Recommondations = () => {
     fetchRecommendations();
   }, []);
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "auto",
+    });
+  }, [currentPage]);
+
   const recommCurrentPageHandler = (value) => {
     userCtx.setRecomCurrentPage(value);
   };
