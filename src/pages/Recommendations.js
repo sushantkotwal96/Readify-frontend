@@ -84,7 +84,7 @@ export const Recommondations = () => {
             px: { xs: 1, md: 0.5 },
           }}
         >
-          Recommondations
+          Recommendations
         </Typography>
 
         {responseError && <AlertBox message="There was some error!" />}
