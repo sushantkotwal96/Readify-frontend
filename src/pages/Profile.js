@@ -1,4 +1,11 @@
-import { Box, Container, Stack, Alert } from "@mui/material";
+import {
+  Box,
+  Container,
+  Stack,
+  Alert,
+  Autocomplete,
+  Popper,
+} from "@mui/material";
 import { Button, TextField } from "@mui/material";
 import DoneOutlinedIcon from "@mui/icons-material/DoneOutlined";
 import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
@@ -7,6 +14,7 @@ import { makeStyles } from "@mui/styles";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { baseUrl } from "../baseUrl";
 import UserContext from "../store/User-Context";
+import { genres } from "../components/login/genres";
 
 const useStyles = makeStyles((theme) => ({
   inpuText: {
@@ -36,6 +44,27 @@ const useStyles = makeStyles((theme) => ({
     color: "#832BE0 !important",
   },
 }));
+
+const CustomerPopper = (props) => {
+  const modifiers = [
+    {
+      name: "flip",
+      options: {
+        fallbackPlacements: [],
+      },
+    },
+  ];
+
+  return (
+    <Popper
+      {...props}
+      modifiers={modifiers}
+      popperOptions={{
+        placement: "bottom",
+      }}
+    />
+  );
+};
 
 export const Profile = () => {
   const userCtx = useContext(UserContext);
@@ -161,6 +190,8 @@ export const Profile = () => {
         genre3: updatedUser.genre_3,
       };
 
+      // console.log(inputPayload);
+
       try {
         const response = await fetch(baseUrl + "/updateprofile", {
           method: "PUT",
@@ -234,20 +265,20 @@ export const Profile = () => {
     const fname = fNameRef.current.value;
     const lname = lNameRef.current.value;
     const email = emailRef.current.value;
-    const genre1 = genre1Ref.current.value;
-    const genre2 = genre2Ref.current.value;
-    const genre3 = genre3Ref.current.value;
+    // const genre1 = genre1Ref.current.value;
+    // const genre2 = genre2Ref.current.value;
+    // const genre3 = genre3Ref.current.value;
 
-    const updatedUser = {
+    const updatedUserProfile = {
+      ...updatedUser,
       first_name: fname,
       last_name: lname,
       email_id: email,
-      genre_1: genre1,
-      genre_2: genre2,
-      genre_3: genre3,
     };
 
-    setUpdatedUser(updatedUser);
+    // console.log("updated user:", updatedUserProfile);
+
+    setUpdatedUser(updatedUserProfile);
   };
 
   return (
@@ -279,6 +310,7 @@ export const Profile = () => {
             onSubmit={submitHandler}
             mt={2}
           >
+            {/* {console.log("updated user", updatedUser)} */}
             <Stack
               direction="row"
               justifyContent="center"
@@ -303,7 +335,7 @@ export const Profile = () => {
                   readOnly: !editProfile,
                   autoComplete: "new-password",
                   form: {
-                    autCcomplete: "off",
+                    autoComplete: "off",
                   },
                 }}
               />
@@ -323,7 +355,7 @@ export const Profile = () => {
                   readOnly: !editProfile,
                   autoComplete: "new-password",
                   form: {
-                    autCcomplete: "off",
+                    autoComplete: "off",
                   },
                 }}
               />
@@ -351,72 +383,100 @@ export const Profile = () => {
                   readOnly: !editProfile,
                   autoComplete: "new-password",
                   form: {
-                    autCcomplete: "off",
+                    autoComplete: "off",
                   },
                 }}
               />
             </Stack>
             <Stack spacing={2} mt={2}>
               <Stack direction="row" spacing={2} alignItems="flex-start">
-                <TextField
-                  className={genre1Error ? classes.errorText : classes.inpuText}
-                  required
-                  id="outlined-required4"
-                  label="Genre 1"
-                  fullWidth
-                  onChange={handleChange}
-                  variant="filled"
-                  error={genre1Error}
-                  helperText={genre1Error && "Incorrect Entry."}
-                  inputRef={genre1Ref}
+                <Autocomplete
+                  readOnly={!editProfile}
+                  onChange={(event, newValue) => {
+                    setUpdatedUser({ ...updatedUser, genre_1: newValue });
+                  }}
                   value={updatedUser.genre_1}
-                  inputProps={{
-                    readOnly: !editProfile,
-                    autoComplete: "new-password",
-                    form: {
-                      autCcomplete: "off",
-                    },
-                  }}
-                />
-                <TextField
-                  className={genre2Error ? classes.errorText : classes.inpuText}
-                  required
-                  id="outlined-required5"
-                  label="Genre 2"
+                  disablePortal
+                  id="combo-box-demo"
                   fullWidth
-                  onChange={handleChange}
-                  variant="filled"
-                  error={genre2Error}
-                  helperText={genre2Error && "Incorrect Entry."}
-                  inputRef={genre2Ref}
+                  PopperComponent={CustomerPopper}
+                  options={genres}
+                  ListboxProps={{ style: { maxHeight: "13rem" } }}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      className={
+                        genre1Error ? classes.errorText : classes.inpuText
+                      }
+                      fullWidth
+                      variant="filled"
+                      required
+                      label="Genre 1"
+                      error={genre1Error}
+                      helperText={genre1Error && "Incorrect Entry."}
+                      inputRef={genre1Ref}
+                    />
+                  )}
+                />
+
+                <Autocomplete
+                  readOnly={!editProfile}
                   value={updatedUser.genre_2}
-                  inputProps={{
-                    readOnly: !editProfile,
-                    autoComplete: "new-password",
-                    form: {
-                      autCcomplete: "off",
-                    },
+                  onChange={(event, newValue) => {
+                    setUpdatedUser({ ...updatedUser, genre_2: newValue });
                   }}
-                />
-                <TextField
-                  className={genre3Error ? classes.errorText : classes.inpuText}
-                  required
-                  id="outlined-required6"
-                  label="Genre 3"
+                  disablePortal
+                  id="combo-box-demo2"
                   fullWidth
-                  onChange={handleChange}
-                  variant="filled"
-                  error={genre3Error}
-                  helperText={genre3Error && "Incorrect Entry."}
-                  inputRef={genre3Ref}
+                  PopperComponent={CustomerPopper}
+                  options={genres}
+                  ListboxProps={{ style: { maxHeight: "13rem" } }}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      className={
+                        genre2Error ? classes.errorText : classes.inpuText
+                      }
+                      fullWidth
+                      variant="filled"
+                      required
+                      label="Genre 2"
+                      error={genre2Error}
+                      helperText={genre2Error && "Incorrect Entry."}
+                      inputRef={genre2Ref}
+                      onChange={handleChange}
+                    />
+                  )}
+                />
+
+                <Autocomplete
+                  readOnly={!editProfile}
                   value={updatedUser.genre_3}
-                  inputProps={{
-                    readOnly: !editProfile,
-                    autoComplete: "new-password",
-                    form: {
-                      autCcomplete: "off",
-                    },
+                  onChange={(event, newValue) => {
+                    setUpdatedUser({ ...updatedUser, genre_3: newValue });
                   }}
+                  disablePortal
+                  id="combo-box-demo3"
+                  fullWidth
+                  PopperComponent={CustomerPopper}
+                  options={genres}
+                  ListboxProps={{ style: { maxHeight: "13rem" } }}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      className={
+                        genre3Error ? classes.errorText : classes.inpuText
+                      }
+                      fullWidth
+                      variant="filled"
+                      required
+                      label="Genre 3"
+                      error={genre3Error}
+                      helperText={genre3Error && "Incorrect Entry."}
+                      inputRef={genre3Ref}
+                      onChange={handleChange}
+                    />
+                  )}
                 />
               </Stack>
             </Stack>

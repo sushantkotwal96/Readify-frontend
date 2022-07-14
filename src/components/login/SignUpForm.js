@@ -56,13 +56,6 @@ const CustomerPopper = (props) => {
         fallbackPlacements: [],
       },
     },
-    // {
-    //   name: "preventOverflow",
-    //   options: {
-    //     altAxis: true,
-    //     padding: 40,
-    //   },
-    // },
   ];
 
   return (
@@ -210,6 +203,8 @@ export const SignUpForm = (props) => {
       setGenre1Error(false);
       setGenre2Error(false);
       setGenre3Error(false);
+
+      console.log("userdata:", userData);
 
       props.onSignUpSubmit(userData);
     }
