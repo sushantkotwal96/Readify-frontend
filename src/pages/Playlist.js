@@ -119,6 +119,10 @@ export const Playlist = () => {
       if (response.status === 200) {
         responseHandler();
         getAllBookLists();
+
+        if (sessionStorage.getItem("recommendations") !== null) {
+          sessionStorage.removeItem("recommendations");
+        }
       } else if (response.status === 401) {
         console.log(response.json().message);
       }
@@ -147,6 +151,9 @@ export const Playlist = () => {
       if (response.status === 200) {
         responseHandler();
         getAllBookLists();
+        if (sessionStorage.getItem("recommendations") !== null) {
+          sessionStorage.removeItem("recommendations");
+        }
         userCtx.setLastVisitedList("0");
       } else if (response.status === 403) {
         console.log(response.json().message);
