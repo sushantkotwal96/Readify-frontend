@@ -213,6 +213,7 @@ export const Profile = () => {
           setResponseError(false);
           setSuccessResponse(true);
           editProfileHandler();
+          sessionStorage.removeItem("recommendations");
         } else if (response.status === 403) {
           console.log(response.json().message);
           setResponseError(true);
