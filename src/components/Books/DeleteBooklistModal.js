@@ -32,7 +32,7 @@ export const DeleteBooklistModal = (props) => {
       <DialogTitle id="alert-dialog-title">{"BookList Alert!"}</DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
-          Are you sure that you want to delete this playlist?
+          Are you sure that you want to delete this booklist?
         </DialogContentText>
       </DialogContent>
       <DialogActions>
