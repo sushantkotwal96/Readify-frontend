@@ -52,3 +52,11 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
+## Contributors
+This project was completed by Sushant Kotwal and Shubham Tamhane.
+
+- Shubham Bhagat: [GitHub](https://github.com/shubhambhagat98)
+- Ameya Dalvi: [GitHub](https://github.com/AmeyaDalvi)
+- Sushant Kotwal: [GitHub](https://github.com/sushantkotwal96)
+- Shefali Luley: [GitHub](https://github.com/ShefaliL)
+
